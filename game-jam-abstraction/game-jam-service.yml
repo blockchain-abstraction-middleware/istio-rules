@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: first-deployment
-  label: first-deployment
+  name: game-jam-abstraction
+  label: game-jam-abstraction
 spec:
   hosts:
   - "*"
@@ -15,9 +15,9 @@ spec:
     - uri:
         exact: /api/v1/manager/get-all-gamejams
     - uri:
-        exact: /api/v1/swagger/docs/swaggerui/
+        prefix: /api/v1/swagger/docs/
     route:
     - destination:
-        host: first-deployment
+        host: game-jam-abstraction
         port:
           number: 80

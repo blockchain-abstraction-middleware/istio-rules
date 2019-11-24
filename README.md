@@ -18,8 +18,28 @@ kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.por
 ```
 
 ## To deploy
-This will expose a default istio gateway and 
+This will expose a default istio gateway and the game jam abstraction
+
 ```shell
 make gateway
 make game-jam
+```
+
+## To clean
+Check virtual services 
+```shell
+kubectl get virtualservices
+kubectl delete virtualservices game-jam-abstraction
+```
+
+Check destination rules 
+```shell
+kubectl get destinationrules
+kubectl delete virtualservices *
+```
+
+Check gateway 
+```shell
+kubectl get gateway
+kubectl delete gateway *
 ```
