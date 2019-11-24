@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: first-deployment
+  label: first-deployment
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - chainabstractiongateway
+  http:
+  - match:
+    - uri:
+        exact: /api/v1/health/status
+    - uri:
+        exact: /api/v1/manager/get-all-gamejams
+    - uri:
+        exact: /api/v1/swagger/docs/swaggerui/
+    route:
+    - destination:
+        host: first-deployment
+        port:
+          number: 80
